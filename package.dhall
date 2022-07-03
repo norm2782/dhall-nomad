@@ -1,4 +1,5 @@
 { Affinity = ./schemas/Affinity.dhall
+, Agent = ./schemas/Agent.dhall
 , Artifact = ./schemas/Artifact.dhall
 , Check = ./schemas/Check.dhall
 , Constraint = ./schemas/Constraint.dhall
