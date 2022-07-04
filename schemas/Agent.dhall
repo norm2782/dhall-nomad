@@ -1,5 +1,6 @@
 let Map = (../Prelude.dhall).Map.Type
--- let Port = (../types/Port.dhall)
+let AgentPort = ../types/AgentPort.dhall
+let Plugin = ../types/Plugin.dhall
 in { Type = ../types/Agent.dhall
    , default =
      { -- acl = None ACL
@@ -30,8 +31,8 @@ in { Type = ../types/Agent.dhall
      , log_rotate_max_files = None Natural
      , name = None Text
      , plugin_dir = None Text
-     --, plugin : Optional Plugin -- Specifies configuration for a specific plugin. The plugin stanza may be repeated, once for each plugin being configured. The key of the stanza is the plugin's executable name relative to the plugin_dir.
-     --, ports = None Port
+     , plugin = None Plugin
+     , ports = None AgentPort
      , region = None Text
      --, sentinel : Optional Sentinel -- Specifies configuration for Sentinel policies.
      --, server : Optional Server -- Specifies configuration which is specific to the Nomad server.

@@ -1,6 +1,7 @@
 {- https://www.nomadproject.io/docs/configuration -}
 let Map = (../Prelude.dhall).Map.Type
--- let Port = (./Port.dhall)
+let AgentPort = ./AgentPort.dhall
+let Plugin = ./Plugin.dhall
 in { -- acl : Optional ACL -- Specifies configuration which is specific to ACLs.
    --, addresses : Optional Addresses -- Specifies the bind address for individual network services. Any values configured in this stanza take precedence over the default bind_addr. These values should be specified in IP format without a port (ex. "0.0.0.0"). To set the port, see the ports field. The values support go-sockaddr/template format.
    --, advertise : Optional Advertise -- Specifies the advertise address for individual network services. This can be used to advertise a different address to the peers of a server or a client node to support more complex network configurations such as NAT. This configuration is optional, and defaults to the bind address of the specific network service if it is not provided. Any values configured in this stanza take precedence over the default bind_addr.
@@ -29,8 +30,8 @@ in { -- acl : Optional ACL -- Specifies configuration which is specific to ACLs.
    , log_rotate_max_files : Optional Natural -- Specifies the maximum number of older log file archives to keep, not including the log file currently being written. If set to 0 no files are ever deleted. Note that the total number of log files, for each of stderr and stdout, will be 1 greater than the log_rotate_max_files value.
    , name : Optional Text -- Specifies the name of the local node. This value is used to identify individual agents. When specified on a server, the name must be unique within the region.
    , plugin_dir : Optional Text -- Specifies the directory to use for looking up plugins. By default, this is the top-level data_dir suffixed with "plugins", like "/opt/nomad/plugins". This must be an absolute path.
-   --, plugin : Optional Plugin -- Specifies configuration for a specific plugin. The plugin stanza may be repeated, once for each plugin being configured. The key of the stanza is the plugin's executable name relative to the plugin_dir.
-   --, ports : Optional Port -- Specifies the network ports used for different services required by the Nomad agent.
+   , plugin : Optional Plugin -- Specifies configuration for a specific plugin. The plugin stanza may be repeated, once for each plugin being configured. The key of the stanza is the plugin's executable name relative to the plugin_dir.
+   , ports : Optional AgentPort -- Specifies the network ports used for different services required by the Nomad agent.
    , region : Optional Text -- Specifies the region the Nomad agent is a member of. A region typically maps to a geographic region, for example us, with potentially multiple zones, which map to datacenters such as us-west and us-east.
    --, sentinel : Optional Sentinel -- Specifies configuration for Sentinel policies.
    --, server : Optional Server -- Specifies configuration which is specific to the Nomad server.
